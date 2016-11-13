@@ -1,0 +1,18 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}Wedstrijd aanmaken{% endblock %}
+{% block pageTitle %}Wedstrijden aanmaken{% endblock %}
+
+{% block content %}
+    {# Back button #}
+    <p>
+        <a href="{{ urlFor('game.all', {seasonId: seasonId}) }}" class="btn btn-primary">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+    </p>
+
+    <form action="{{ urlFor('game.create.post', {seasonId: seasonId}) }}" method="post" autocomplete="off">
+        {% include 'game/partials/form.twig' with {'submitButtonText': 'Aanmaken'} %}
+    </form>
+{% endblock %}
+

@@ -1,0 +1,35 @@
+<div class="form-group">
+    <label for="first_name">Voornaam</label>
+    <input type="text" name="first_name" id="first_name" class="form-control" {% include 'player/partials/value.twig' with {'field': 'first_name'} %}/>
+    {% include 'errors/field.twig' with {'field': 'first_name'} %}
+</div>
+<div class="form-group">
+    <label for="last_name">Achternaam</label>
+    <input type="text" name="last_name" id="last_name" class="form-control" {% include 'player/partials/value.twig' with {'field': 'last_name'} %}/>
+    {% include 'errors/field.twig' with {'field': 'last_name'} %}
+</div>
+<div class="form-group">
+    <label for="email">E-mail</label>
+    <input type="email" name="email" id="email" class="form-control" {% include 'player/partials/value.twig' with {'field': 'email'} %}/>
+    {% include 'errors/field.twig' with {'field': 'email'} %}
+</div>
+<div class="form-group">
+    <label for="telephone">Telefoon</label>
+    <input type="tel" name="telephone" id="telephone" class="form-control" {% include 'player/partials/value.twig' with {'field': 'telephone'} %}/>
+    {% include 'errors/field.twig' with {'field': 'telephone'} %}
+</div>
+<div class="form-group">
+    <label for="membership_id">Lidnummer</label>
+    <input type="text" name="membership_id" id="membership_id" class="form-control" {% include 'player/partials/value.twig' with {'field': 'membership_id'} %}/>
+    {% include 'errors/field.twig' with {'field': 'membership_id'} %}
+</div>
+<div class="form-group">
+    <label for="profile_url">Profiel URL</label>
+    <input type="url" name="profile_url" id="profile_url" class="form-control" {% include 'player/partials/value.twig' with {'field': 'profile_url'} %}/>
+    {% include 'errors/field.twig' with {'field': 'profile_url'} %}
+</div>
+<div class="form-group">
+    <input type="submit" value="{{ submitButtonText }}" class="btn btn-primary form-control"/>
+</div>
+
+<input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>

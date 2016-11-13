@@ -1,0 +1,199 @@
+body {
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.padding-right-10 {
+    padding-right: 10px;
+}
+
+table .disabled {
+    background: #ddd;
+}
+
+/* Navigation
+*******************************/
+
+.navbar-default {
+    background: #2196F3;
+    border: 0;
+    border-top: 15px solid #1976D2;
+    box-shadow: #202020 0 0px 2px 0px;
+}
+
+.navbar-brand {
+    height: 65px;
+    padding-top: 22.5px;
+    padding-bottom: 22.5px;
+}
+
+.navbar-nav > li > a {
+    padding-top: 22.5px;
+    padding-bottom: 22.5px;
+}
+
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-brand {
+    color: #fff;
+    transition: background .2s ease;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:active,
+.navbar-default .navbar-brand:active,
+.navbar-default .navbar-brand:hover {
+    background: #1976D2;
+    color: #fff;
+}
+
+/*
+ * Responsive nav button.
+ */
+
+.navbar-default .navbar-toggle {
+    margin-top: 16.5px;
+    margin-bottom: 16.5px;
+    border: 0;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .collapsed {
+    background: #1976D2;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background: #fff;
+}
+
+/*
+ * Dropdown
+ */
+
+.navbar-default .navbar-nav > .open >a,
+.nav .open>a {
+    background: #1976D2 !important;
+    color: #fff !important;
+}
+
+.navbar-collapse {
+    border: 0;
+}
+
+/* Footer
+*******************************/
+
+footer {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #909090;
+}
+
+/* Button
+*******************************/
+
+.btn {
+    padding: 8px 14px;
+    border-radius: 2px;
+    transition: background .2s ease;
+}
+
+.btn-primary {
+    background: #03A9F4;
+    border-color: #0396d9;
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+    background: #2196F3;
+    border-color: #1f8ee6;
+}
+
+.btn-danger {
+    background: #D32F2F;
+    border-color: #c72c2c;
+}
+
+.btn-danger:hover,
+.btn-danger:active,
+.btn-danger:focus {
+    background: #c92d2d;
+    border-color: #b42727;
+}
+
+/* Form
+*******************************/
+
+.form-control {
+    border-radius: 2px;
+}
+
+/* Pills
+*******************************/
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover {
+    background: #03A9F4;
+}
+
+/* Link
+*******************************/
+
+a {
+    color: #1976D2;
+}
+
+/* Print
+*******************************/
+
+@media print {
+    .btn {
+        display: none;
+    }
+    
+    /*
+    Get rid of the URL
+    */
+    table a[href]:after {
+        content: "";
+    }
+}
+
+#map-canvas {
+
+    height: 350px;
+    background: #ddd;
+    border: 1px solid #ddd;
+}
+
+#toggle {
+    display: none;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 2px;
+}
+
+/* Max 767px
+*******************************/
+
+@media (max-width: 767px) {
+    .navbar-nav > li > a {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #fff;
+    }
+
+    .dropdown-menu .divider {
+        background: #1976D2;
+    }
+
+    .navbar-nav .open .dropdown-menu {
+        background: rgba(0,0,0,.05);
+    }
+}

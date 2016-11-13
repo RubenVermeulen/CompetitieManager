@@ -1,0 +1,7 @@
+{% extends 'email/templates/default.twig' %}
+
+{% block content %}
+    <p>Er is een account ({{ username }}) voor je aangemaakt op de Competitie Manager van Flee Shuttle 2H!</p>
+    <p>Activeer je account door op anderstaande URL te klikken:</p>
+    <a href="{{ baseUrl }}{{ urlFor('user.activate') }}?email={{ user.email }}&identifier={{ identifier|url_encode }}">{{ baseUrl }}{{ urlFor('user.activate') }}?email={{ user.email }}&identifier={{ identifier|url_encode }}</a>
+{% endblock %}

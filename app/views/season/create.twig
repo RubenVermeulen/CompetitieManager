@@ -1,0 +1,20 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}Seizoen aanmaken{% endblock %}
+{% block pageTitle %}Seizoen aanmaken{% endblock %}
+
+{% block content %}
+    <form action="{{ urlFor('season.create.post') }}" method="post" autocomplete="off">
+        <div class="form-group">
+            <label for="name">Naam</label>
+            <input type="text" name="name" id="name" class="form-control" {% if request.post('name') %}value="{{ request.post('name') }}{% endif %}"/>
+            {% include 'errors/field.twig' with {'field': 'name'} %}
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Aanmaken" class="btn btn-primary form-control"/>
+        </div>
+        
+        <input name="{{ csrf_key }}" value="{{ csrf_token }}" type="hidden"/>
+    </form>
+{% endblock %}
+

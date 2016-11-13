@@ -1,0 +1,11 @@
+{% if request.post(field) %}
+    value="{{ request.post(field) }}"
+{% else %}
+    {% if game %}
+        {% if customValue %}
+            value="{{ customValue }}"
+        {% else %}
+            value="{{ game[field] }}"
+        {% endif %}
+    {% endif %}
+{% endif %}

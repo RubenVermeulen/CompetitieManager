@@ -1,0 +1,20 @@
+{% extends 'templates/default.twig'%}
+
+{% block title %}Wachtwoord vergeten{% endblock %}
+{% block pageTitle %}Wachtwoord vergeten{% endblock %}
+
+{% block content %}
+    <p>Vul je e-mailadres in om een nieuw wachtwoord aan te vragen.</p>
+    <form action="{{ urlFor('auth.password.recover.post') }}" method="post" autocomplete="off">
+        <div class="form-group">
+            <label for="email">E-mailadres</label>
+            <input type="text" name="email" id="email" {% if request.post('email') %} value="{{ request.post('email') }}" {% endif %} class="form-control"/>
+            {% include 'errors/field.twig' with {'field': 'email'} %}
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Reset aanvragen" class="btn btn-primary form-control"/>
+        </div>
+
+        <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>
+    </form>
+{% endblock %}

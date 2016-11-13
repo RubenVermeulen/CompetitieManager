@@ -1,0 +1,21 @@
+{% if select %}
+    {% if request.post(field) %}
+        {{ request.post(field) }}
+    {% else %}
+        {% if player %}
+            {{ player[field] }}
+        {% endif %}
+    {% endif %}
+{% else %}
+    {% if request.post(field) %}
+        value="{{ request.post(field) }}"
+    {% else %}
+        {% if player %}
+            {% if customValue %}
+                value="{{ customValue }}"
+            {% else %}
+                value="{{ player[field] }}"
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endif %}

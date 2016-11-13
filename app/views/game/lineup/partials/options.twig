@@ -1,0 +1,12 @@
+<option value="0">Maak een keuze</option>
+{% for player in players %}
+    <option
+            value="{{ player.id }}"
+            {% if selected %}
+                {% if selected|trim == player.id %}
+                    selected
+                {% endif %}
+            {% endif %}
+            >{{ player.first_name }} {{ player.last_name }}
+    </option>
+{% endfor %}

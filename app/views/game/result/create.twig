@@ -1,0 +1,105 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}Resultaat aanmaken{% endblock %}
+{% block pageTitle %}Resultaat aanmaken{% endblock %}
+
+{% block content %}
+    {# Back button #}
+    <p class="btn-group">
+        <a href="{{ urlFor('game.show', {seasonId: seasonId, gameId: gameId}) }}" class="btn btn-primary">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+        <a href="#" id="getResults" class="btn btn-primary">Resultaten ophalen</a>
+    </p>
+
+    <div id="toggle" class="bg-info">
+        <form id="ajaxGameResults" action="{{ urlFor('cron.game.results') }}" method="get">
+            <p>Vul de URL in van de wedstrijd pagina.</p>
+            <div class="form-group">
+                <input type="url" name="url" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Resultaten ophalen" class="btn btn-primary form-control"/>
+            </div>
+        </form>
+    </div>
+
+
+    <form action="{{ urlFor('result.create.post', {seasonId: seasonId, gameId: gameId}) }}" method="post" autocomplete="off" class="dest">
+
+        {# Dubbel 1 #}
+        <p><strong>Dubbel 1</strong></p>
+        <div class="row">
+            {% include 'game/result/partials/set.twig' with {'match': 'd1', 'set': 1} %}
+            {% include 'game/result/partials/set.twig' with {'match': 'd1', 'set': 2} %}
+            {% include 'game/result/partials/set.twig' with {'match': 'd1', 'set': 3} %}
+        </div>
+
+        {# Dubbel 2 #}
+        <p><strong>Dubbel 2</strong></p>
+        <div class="row">
+            {% include 'game/result/partials/set.twig' with {'match': 'd2', 'set': 1} %}
+            {% include 'game/result/partials/set.twig' with {'match': 'd2', 'set': 2} %}
+            {% include 'game/result/partials/set.twig' with {'match': 'd2', 'set': 3} %}
+        </div>
+
+        {# Dubbel 3 #}
+        <p><strong>Dubbel 3</strong></p>
+        <div class="row">
+            {% include 'game/result/partials/set.twig' with {'match': 'd3', 'set': 1} %}
+            {% include 'game/result/partials/set.twig' with {'match': 'd3', 'set': 2} %}
+            {% include 'game/result/partials/set.twig' with {'match': 'd3', 'set': 3} %}
+        </div>
+
+        {# Dubbel 4 #}
+        <p><strong>Dubbel 4</strong></p>
+        <div class="row">
+            {% include 'game/result/partials/set.twig' with {'match': 'd4', 'set': 1} %}
+            {% include 'game/result/partials/set.twig' with {'match': 'd4', 'set': 2} %}
+            {% include 'game/result/partials/set.twig' with {'match': 'd4', 'set': 3} %}
+        </div>
+
+        <hr/>
+
+        {# Enkel 1 #}
+        <p><strong>Enkel 1</strong></p>
+        <div class="row">
+            {% include 'game/result/partials/set.twig' with {'match': 's1', 'set': 1} %}
+            {% include 'game/result/partials/set.twig' with {'match': 's1', 'set': 2} %}
+            {% include 'game/result/partials/set.twig' with {'match': 's1', 'set': 3} %}
+        </div>
+
+        {# Enkel 2 #}
+        <p><strong>Enkel 2</strong></p>
+        <div class="row">
+            {% include 'game/result/partials/set.twig' with {'match': 's2', 'set': 1} %}
+            {% include 'game/result/partials/set.twig' with {'match': 's2', 'set': 2} %}
+            {% include 'game/result/partials/set.twig' with {'match': 's2', 'set': 3} %}
+        </div>
+
+        {# Enkel 3 #}
+        <p><strong>Enkel 3</strong></p>
+        <div class="row">
+            {% include 'game/result/partials/set.twig' with {'match': 's3', 'set': 1} %}
+            {% include 'game/result/partials/set.twig' with {'match': 's3', 'set': 2} %}
+            {% include 'game/result/partials/set.twig' with {'match': 's3', 'set': 3} %}
+        </div>
+
+        {# Enkel 4 #}
+        <p><strong>Enkel 4</strong></p>
+        <div class="row">
+            {% include 'game/result/partials/set.twig' with {'match': 's4', 'set': 1} %}
+            {% include 'game/result/partials/set.twig' with {'match': 's4', 'set': 2} %}
+            {% include 'game/result/partials/set.twig' with {'match': 's4', 'set': 3} %}
+        </div>
+        
+        <div class="form-group">
+            <input type="submit" value="Aanmaken" class="btn btn-primary form-control"/>
+        </div>
+
+        <input name="{{ csrf_key }}" value="{{ csrf_token }}" type="hidden"/>
+    </form>
+
+{% endblock %}
+

@@ -1,0 +1,42 @@
+{% extends 'templates/default.twig'%}
+
+{% block title %}Wedstrijden{% endblock %}
+{% block pageTitle %}Wedstrijden ({{ seasonName }}){% endblock %}
+
+{% block content %}
+    {% if auth.isAdmin %}
+        <p>
+            <a href="{{ urlFor('game.create', {seasonId: seasonId}) }}" class="btn btn-primary">Nieuw</a>
+            <a href="{{ urlFor('season.edit', {seasonId: seasonId}) }}" class="btn btn-primary">Seizoen wijzigen</a>
+        </p>
+    {% endif %}
+
+    {% if games is empty %}
+        <p>Geen wedstrijden.</p>
+    {% else %}
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Tegenstander</th>
+                    <th>Adres</th>
+                    <th>Datum</th>
+                    <th>Dag</th>
+                    <th>Tijd</th>
+                </tr>
+                </thead>
+
+                {% for game in games %}
+                    <tr>
+                        <td><a href="{{ urlFor('game.show', {seasonId: seasonId, gameId: game.id}) }}">{{ game.competitor }}</a></td>
+                        <td>{{ game.getAddress }}</td>
+                        <td>{{ game.getDatePlayedAt }}</td>
+                        <td>{{ game.getDayPlayedAt }}</td>
+                        <td>{{ game.getTimePlayedAt }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}
+

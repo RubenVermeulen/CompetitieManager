@@ -1,0 +1,18 @@
+<div class="form-group col-md-4">
+    <label>Set {{ set }} {% if set == 3 %}(optioneel){% endif %}</label>
+    <input
+            type="text"
+            name="{{ match ~ 's' ~ set }}"
+            class="form-control"
+            {% if request.post(match ~ 's' ~ set) %}
+                value="{{ request.post(match ~ 's' ~ set) }}"
+            {% else %}
+                {% if matches %}
+                    {% if matches[matchIndex].sets[set - 1].result_one %}
+                        value="{{ matches[matchIndex].sets[set - 1].result_one }} {{ matches[matchIndex].sets[set - 1].result_two }}"
+                    {% endif %}
+                {% endif %}
+            {% endif %}"
+    />
+    {% include 'errors/field.twig' with {'field': match ~ 's' ~ set} %}
+</div>

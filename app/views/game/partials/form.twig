@@ -1,0 +1,46 @@
+<div class="form-group">
+    <label for="competitor">Tegenstander</label>
+    <input type="text" name="competitor" id="competitor" class="form-control" {% include 'game/partials/value.twig' with {'field': 'competitor'} %}/>
+    {% include 'errors/field.twig' with {'field': 'competitor'} %}
+</div>
+<div class="form-group">
+    <label for="home">Thuis</label><br/>
+    <input type="checkbox" name="home" id="home" {% include 'game/partials/checked.twig' with {'field': 'home'} %}/>
+</div>
+<div id="address">
+    <div class="form-group">
+        <label for="city">Stad</label>
+        <input type="text" name="city" id="city" class="form-control" {% include 'game/partials/value.twig' with {'field': 'city'} %}/>
+        {% include 'errors/field.twig' with {'field': 'city'} %}
+    </div>
+    <div class="form-group">
+        <label for="zip_code">Postcode</label>
+        <input type="text" name="zip_code" id="zip_code" class="form-control" {% include 'game/partials/value.twig' with {'field': 'zip_code'} %}/>
+        {% include 'errors/field.twig' with {'field': 'zip_code'} %}
+    </div>
+    <div class="form-group">
+        <label for="street_name">Straatnaam</label>
+        <input type="text" name="street_name" id="street_name" class="form-control" {% include 'game/partials/value.twig' with {'field': 'street_name'} %}/>
+        {% include 'errors/field.twig' with {'field': 'street_name'} %}
+    </div>
+    <div class="form-group">
+        <label for="street_number">Straatnummer</label>
+        <input type="text" name="street_number" id="street_number" class="form-control" {% include 'game/partials/value.twig' with {'field': 'street_number'} %}/>
+        {% include 'errors/field.twig' with {'field': 'street_number'} %}
+    </div>
+</div>
+<div class="form-group">
+    <label for="date">Date</label>
+    <input type="date" name="date" id="date" class="form-control" {% include 'game/partials/value.twig' with {'field': 'date', 'customValue': game.getStandardDatePlayedAt} %}/>
+    {% include 'errors/field.twig' with {'field': 'date'} %}
+</div>
+<div class="form-group">
+    <label for="time">Date</label>
+    <input type="time" name="time" id="time" class="form-control" {% include 'game/partials/value.twig' with {'field': 'time', 'customValue': game.getTimePlayedAt} %}/>
+    {% include 'errors/field.twig' with {'field': 'time'} %}
+</div>
+<div class="form-group">
+    <input type="submit" value="{{ submitButtonText }}" class="btn btn-primary form-control"/>
+</div>
+
+<input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>

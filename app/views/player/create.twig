@@ -1,0 +1,18 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}Speler aanmaken{% endblock %}
+{% block pageTitle %}Speler aanmaken{% endblock %}
+
+{% block content %}
+    {# Back button #}
+    <p>
+        <a href="{{ urlFor('player.all') }}" class="btn btn-primary">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+    </p>
+
+    <form action="{{ urlFor('player.create.post') }}" method="post" autocomplete="off">
+        {% include 'player/partials/form.twig' with {'submitButtonText': 'Aanmaken'} %}
+    </form>
+{% endblock %}
+

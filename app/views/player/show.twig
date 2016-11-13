@@ -1,0 +1,146 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}Player details{% endblock %}
+{% block pageTitle %}{{ player.first_name }} {{ player.last_name }}{% endblock %}
+
+{% block content %}
+
+    <p class="btn-group">
+        <a href="{{ urlFor('player.all') }}" class="btn btn-primary">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+
+        {% if auth.isAdmin %}
+            <a href="{{ urlFor('player.edit', {id: player.id}) }}" class="btn btn-primary">Wijzigen</a>
+        {% endif %}
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tr>
+                <th>E-mailadres</th>
+                <td><a href="mailto:{{ player.email }}">{{ player.email }}</a></td>
+            </tr>
+            <tr>
+                <th>Telefoon</th>
+                <td>{{ player.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Lidnummer</th>
+                <td>{{ player.membership_id }}</td>
+            </tr>
+            <tr>
+                <th>Heren enkel</th>
+                <td>{{ player.getSm }}</td>
+            </tr>
+            <tr>
+                <th>Heren dubbel</th>
+                <td>{{ player.getDm }}</td>
+            </tr>
+            <tr>
+                <th>Mix dubbel</th>
+                <td>{{ player.getDx }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>Statistieken</h2>
+    <hr/>
+
+    <h3>Enkel</h3>
+    <hr/>
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tr>
+                <th>Punten</th>
+                <td>{{ player.totalPointsSingle }}</td>
+            </tr>
+
+            {# Matchen#}
+            <tr>
+                <th>Matchen</th>
+                <td>{{ player.matchesPlayedSingle }}</td>
+            </tr>
+            <tr>
+                <th>Gewonnen matchen</th>
+                <td>{{ player.matchesWonSingle }}</td>
+            </tr>
+            <tr>
+                <th>Punten/match</th>
+                <td>{{ player.pointsPerMatchSingle }}</td>
+            </tr>
+            <tr>
+                <th>Winstpercentage (m)</th>
+                <td>{{ player.winPercentageSingle }}%</td>
+            </tr>
+            <tr class="active">
+                <td></td>
+                <td></td>
+            </tr>
+
+            {# Sets #}
+            <tr>
+                <th>Sets</th>
+                <td>{{ player.totalSetsSingle }}</td>
+            </tr>
+            <tr>
+                <th>Gewonnen sets</th>
+                <td>{{ player.setsWonSingle }}</td>
+            </tr>
+            <tr>
+                <th>Punten/set</th>
+                <td>{{ player.pointsPerSetSingle }}</td>
+            </tr>
+            <tr>
+                <th>Winstpercentage (s)</th>
+                <td>{{ player.setsWinPercentageSingle }}%</td>
+            </tr>
+
+        </table>
+    </div>
+
+    <h3>Dubbel</h3>
+    <hr/>
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Speler</th>
+                    <th>Punten</th>
+
+                    <th>Matchen</th>
+                    <th>Gewonnen (m)</th>
+                    <th>Punten/match</th>
+                    <th>Winstpercentage (m)</th>
+
+                    <th>Sets</th>
+                    <th>Gewonnen (s)</th>
+                    <th>Punten/set</th>
+                    <th>Winstpercentage (s)</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for otherPlayer in players %}
+                <tr>
+                    <td>{{ otherPlayer.getFullName }}</td>
+                    <td>{{ player.totalPointsDoubleWithOtherPlayer(otherPlayer) }}</td>
+
+                    <td>{{ player.totalMatchesDoubleWithOtherPlayer(otherPlayer) }}</td>
+                    <td>{{ player.wonWithOtherPlayer(otherPlayer) }}</td>
+                    <td>{{ player.pointsPerMatchDoubleWithOtherPlayer(otherPlayer) }}</td>
+                    <td>{{ player.winPercentageWithOtherPlayer(otherPlayer) }}%</td>
+
+                    <td>{{ player.setsWithOtherPlayer(otherPlayer) }}</td>
+                    <td>{{ player.setsWonWithOtherPlayer(otherPlayer) }}</td>
+                    <td>{{ player.pointsPerSetWithOtherPlayer(otherPlayer) }}</td>
+                    <td>{{ player.setsWinPercentageWithOtherPlayer(otherPlayer) }}%</td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

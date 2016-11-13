@@ -1,0 +1,174 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}Wedstrijd details{% endblock %}
+{% block pageTitle %}Wedstrijd details{% endblock %}
+
+{% block content %}
+    <p class="btn-group">
+        <a href="{{ urlFor('game.all', {seasonId: seasonId}) }}" class="btn btn-primary">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+        {% if auth.isAdmin %}
+            <a href="{{ urlFor('game.edit', {seasonId: seasonId, gameId: game.id}) }}" class="btn btn-primary">Details wijzigen</a>
+        {% endif %}
+        <button class="btn btn-primary" onclick="window.print()">Printen</button>
+    </p>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Tegenstander</th>
+            <td>{{ game.competitor }}</td>
+        </tr>
+        <tr>
+            <th>Adres</th>
+            <td><span id="google-map-address">{{ game.getAddress }}</span></td>
+        </tr>
+        <tr>
+            <th>Datum</th>
+            <td>{{ game.getDatePlayedAt }}</td>
+        </tr>
+        <tr>
+            <th>Tijd</th>
+            <td>{{ game.getTimePlayedAt }}</td>
+        </tr>
+    </table>
+
+    {# Google Map #}
+    <div id="map-canvas" class="hidden-print"></div>
+
+    <h2>Lineup</h2>
+    <hr/>
+
+    {% if game.matches is empty %}
+        {# Create lineup #}
+        {% if auth.isAdmin %}
+            <p><a href="{{ urlFor('lineup.create', {seasonId: seasonId, gameId: game.id}) }}" class="btn btn-primary">Lineup opstellen</a></p>
+        {% endif %}
+
+        <p>Er is nog geen lineup beschikbaar.</p>
+    {% else %}
+        {# Edit lineup #}
+        {% if auth.isAdmin %}
+            <p><a href="{{ urlFor('lineup.edit', {seasonId: seasonId, gameId: game.id}) }}" class="btn btn-primary">Lineup Wijzigen</a></p>
+        {% endif %}
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Spel</th>
+                    <th>Speler(s)</th>
+                    <th>Lidnummer</th>
+                    <th>Klassement</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% set count = 1 %}
+                    {% set double = true %}
+
+                    {% for match in game.matches %}
+                        {% if match.type ==  2 %}
+                            <tr>
+                                <th rowspan="2">Dubbel {{ count }}</th>
+                                <td class="lightUp">{{ match.players[0].getFullname }}</td>
+                                <td>{{ match.players[0].membership_id }}</td>
+                                <td>{{ match.players[0].dm }}</td>
+                            </tr>
+                            <tr>
+                                <td class="lightUp">{{ match.players[1].getFullname }}</td>
+                                <td>{{ match.players[1].membership_id }}</td>
+                                <td>{{ match.players[1].dm }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <th>Enkel {{ count }}</th>
+                                <td class="lightUp">{{ match.players[0].getFullname }}</td>
+                                <td>{{ match.players[0].membership_id }}</td>
+                                <td>{{ match.players[0].sm }}</td>
+                            </tr>
+                        {% endif %}
+
+                        {# Increment count #}
+                        {% if count == 4 %}
+                            {% set count = 1 %}
+                            {% set double = false %}
+                        {% else %}
+                            {% set count = count + 1 %}
+                        {% endif %}
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+
+    <div class="hidden-print">
+        <h2>Resultaten</h2>
+        <hr/>
+
+        {# Check if there are results #}
+        {% if game.matches[0].sets is empty %}
+
+            {# Check if there is a lineup #}
+            {% if game.matches is not empty %}
+
+                {# Create results #}
+                {% if auth.isAdmin %}
+                    <p><a href="{{ urlFor('result.create', {seasonId: seasonId, gameId: game.id}) }}" class="btn btn-primary">Resultaten invullen</a></p>
+                {% endif %}
+            {% endif %}
+
+            <p>Er zijn nog geen resultaten beschikbaar.</p>
+        {% else %}
+            {# Edit results #}
+            {% if auth.isAdmin %}
+                <p><a href="{{ urlFor('result.edit', {seasonId: seasonId, gameId: game.id}) }}" class="btn btn-primary">Resultaten wijzigen</a></p>
+            {% endif %}
+
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Spel</th>
+                        <th>Set 1</th>
+                        <th>Set 2</th>
+                        <th>Set 3</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% set count = 1 %}
+                    {% set double = true %}
+
+                    {% for match in game.matches %}
+                        <tr {{ match.won ? 'class="success"' : 'class="danger"' }}>
+                            <th>{{ match.type == 2 ? 'Dubbel' : 'Enkel' }} {{ count }}</th>
+                            {% for set in match.sets %}
+                                <td>
+                                    {# Check if there is a value available #}
+                                    {% if set.result_one %}
+                                        {{ set.result_one }} -
+                                    {% endif %}{{ set.result_two }}
+
+                                </td>
+                            {% endfor %}
+                        </tr>
+
+                        {# Increment count #}
+                        {% if count == 4 %}
+                            {% set count = 1 %}
+                            {% set double = false %}
+                        {% else %}
+                            {% set count = count + 1 %}
+                        {% endif %}
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+
+    {# Load Google Maps API #}
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script src="{{ baseUrl }}{{ subUrl }}/js/googleMaps.js"></script>
+{% endblock %}

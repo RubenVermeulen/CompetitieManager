@@ -1,0 +1,206 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}Lineup opstellen{% endblock %}
+{% block pageTitle %}Lineup opstellen{% endblock %}
+
+{% block content %}
+    <p>
+        <a href="{{ urlFor('game.show', {seasonId: seasonId, gameId: gameId}) }}" class="btn btn-primary">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+    </p>
+    <form action="{{ urlFor('lineup.create.post', {seasonId: seasonId, gameId: gameId}) }}" method="post" autocomplete="off">
+        {# Dubbel 1 #}
+        <p><strong>Dubbel 1</strong></p>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="d11">Speler 1</label>
+
+                <select name="d11" id="d11" class="form-control">
+                    {% set selected %}
+                    {% if request.post('d11') %}
+                        {{ request.post('d11') }}
+                    {% endif %}
+                    {% endset %}
+                    {% include 'game/lineup/partials/options.twig' with {'players': players, 'selected': selected} %}
+                </select>
+                {% include 'errors/field.twig' with {'field': 'd11'} %}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="d12">Speler 2</label>
+
+                <select name="d12" id="d12" class="form-control">
+                    {% set selected %}
+                    {% if request.post('d12') %}
+                        {{ request.post('d12') }}
+                    {% endif %}
+                    {% endset %}
+                    {% include 'game/lineup/partials/options.twig' with {'players': players, 'selected': selected} %}
+                </select>
+                {% include 'errors/field.twig' with {'field': 'd12'} %}
+            </div>
+        </div>
+
+        {# Dubbel 2 #}
+        <p><strong>Dubbel 2</strong></p>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="d21">Speler 1</label>
+
+                <select name="d21" id="d21" class="form-control">
+                    {% set selected %}
+                    {% if request.post('d21') %}
+                        {{ request.post('d21') }}
+                    {% endif %}
+                    {% endset %}
+                    {% include 'game/lineup/partials/options.twig' with {'players': players, 'selected': selected} %}
+                </select>
+                {% include 'errors/field.twig' with {'field': 'd21'} %}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="d22">Speler 2</label>
+
+                <select name="d22" id="d22" class="form-control">
+                    {% set selected %}
+                    {% if request.post('d22') %}
+                        {{ request.post('d22') }}
+                    {% endif %}
+                    {% endset %}
+                    {% include 'game/lineup/partials/options.twig' with {'players': players, 'selected': selected} %}
+                </select>
+                {% include 'errors/field.twig' with {'field': 'd22'} %}
+            </div>
+        </div>
+
+        {# Dubbel 3 #}
+        <p><strong>Dubbel 3</strong></p>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="d31">Speler 1</label>
+
+                <select name="d31" id="d31" class="form-control">
+                    {% set selected %}
+                    {% if request.post('d31') %}
+                        {{ request.post('d31') }}
+                    {% endif %}
+                    {% endset %}
+                    {% include 'game/lineup/partials/options.twig' with {'players': players, 'selected': selected} %}
+                </select>
+                {% include 'errors/field.twig' with {'field': 'd31'} %}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="d32">Speler 2</label>
+
+                <select name="d32" id="d32" class="form-control">
+                    {% set selected %}
+                    {% if request.post('d32') %}
+                        {{ request.post('d32') }}
+                    {% endif %}
+                    {% endset %}
+                    {% include 'game/lineup/partials/options.twig' with {'players': players, 'selected': selected} %}
+                </select>
+                {% include 'errors/field.twig' with {'field': 'd32'} %}
+            </div>
+        </div>
+
+        {# Dubbel 4 #}
+        <p><strong>Dubbel 4</strong></p>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="d41">Speler 1</label>
+
+                <select name="d41" id="d41" class="form-control">
+                    {% set selected %}
+                    {% if request.post('d41') %}
+                        {{ request.post('d41') }}
+                    {% endif %}
+                    {% endset %}
+                    {% include 'game/lineup/partials/options.twig' with {'players': players, 'selected': selected} %}
+                </select>
+                {% include 'errors/field.twig' with {'field': 'd41'} %}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="d42">Speler 2</label>
+
+                <select name="d42" id="d42" class="form-control">
+                    {% set selected %}
+                    {% if request.post('d42') %}
+                        {{ request.post('d42') }}
+                    {% endif %}
+                    {% endset %}
+                    {% include 'game/lineup/partials/options.twig' with {'players': players, 'selected': selected} %}
+                </select>
+                {% include 'errors/field.twig' with {'field': 'd42'} %}
+            </div>
+        </div>
+
+        <hr/>
+
+        {# Enkel 1#}
+        <div class="form-group">
+            <label for="s1">Enkel 1</label>
+
+            <select name="s1" id="s1" class="form-control">
+                {% set selected %}
+                    {% if request.post('s1') %}
+                        {{ request.post('s1') }}
+                    {% endif %}
+                {% endset %}
+                {% include 'game/lineup/partials/options.twig' with {'players': players, 'selected': selected} %}
+            </select>
+            {% include 'errors/field.twig' with {'field': 's1'} %}
+        </div>
+
+        {# Enkel 1#}
+        <div class="form-group">
+            <label for="s2">Enkel 2</label>
+
+            <select name="s2" id="s2" class="form-control">
+                {% set selected %}
+                    {% if request.post('s2') %}
+                        {{ request.post('s2') }}
+                    {% endif %}
+                {% endset %}
+                {% include 'game/lineup/partials/options.twig' with {'players': players, 'selected': selected} %}
+            </select>
+            {% include 'errors/field.twig' with {'field': 's2'} %}
+        </div>
+
+        {# Enkel 1#}
+        <div class="form-group">
+            <label for="s3">Enkel 3</label>
+
+            <select name="s3" id="s3" class="form-control">
+                {% set selected %}
+                    {% if request.post('s3') %}
+                        {{ request.post('s3') }}
+                    {% endif %}
+                {% endset %}
+                {% include 'game/lineup/partials/options.twig' with {'players': players, 'selected': selected} %}
+            </select>
+            {% include 'errors/field.twig' with {'field': 's3'} %}
+        </div>
+
+        {# Enkel 4#}
+        <div class="form-group">
+            <label for="s4">Enkel 4</label>
+
+            <select name="s4" id="s4" class="form-control">
+                {% set selected %}
+                    {% if request.post('s4') %}
+                        {{ request.post('s4') }}
+                    {% endif %}
+                {% endset %}
+                {% include 'game/lineup/partials/options.twig' with {'players': players, 'selected': selected} %}
+            </select>
+            {% include 'errors/field.twig' with {'field': 's4'} %}
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Opstellen" class="btn btn-primary form-control"/>
+        </div>
+
+        <input name="{{ csrf_key }}" value="{{ csrf_token }}" type="hidden"/>
+    </form>
+{% endblock %}
+

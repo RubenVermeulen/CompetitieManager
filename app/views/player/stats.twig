@@ -1,0 +1,348 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}Spelers statistieken{% endblock %}
+{% block pageTitle %}Spelers statistieken{% endblock %}
+
+{% block content %}
+    <ul class="nav nav-pills">
+        <li role="presentation" {% if seasonId == 'all' %}class="active"{% endif %}>
+            <a href="{{ urlFor('player.stats', {seasonId: 'all'}) }}">Alles</a>
+        </li>
+        {% for season in seasons %}
+            <li role="presentation" {% if seasonId == season.id %}class="active"{% endif %}>
+                <a href="{{ urlFor('player.stats', {seasonId: season.id}) }}">{{ season.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {# Enkel #}
+    <h2>Enkel</h2>
+    <hr/>
+
+    {% if players is empty %}
+        <p>Er zijn nog geen resultaten beschikbaar.</p>
+    {% else %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Speler</th>
+                    <th>Punten</th>
+
+                    <th>Matchen</th>
+                    <th>Gewonnen (m)</th>
+                    <th>Punten/match</th>
+                    <th>Winstpercentage (m)</th>
+
+                    <th>Sets</th>
+                    <th>Gewonnen (s)</th>
+                    <th>Punten/set</th>
+                    <th>Winstpercentage (s)</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in players %}
+                    <tr>
+                        <td>{{ player.getFullName }}</td>
+                        <td>{{ player.totalPointsSingle }}</td>
+
+                        <td>{{ player.matchesPlayedSingle }}</td>
+                        <td>{{ player.matchesWonSingle }}</td>
+                        <td>{{ player.pointsPerMatchSingle }}</td>
+                        <td>{{ player.winPercentageSingle }}%</td>
+
+                        <td>{{ player.totalSetsSingle }}</td>
+                        <td>{{ player.setsWonSingle }}</td>
+                        <td>{{ player.pointsPerSetSingle }}</td>
+                        <td>{{ player.setsWinPercentageSingle }}%</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+
+    {# Dubbel #}
+    <h2>Dubbel</h2>
+    <hr/>
+
+    {% if players is empty %}
+        <p>Er zijn nog geen resultaten beschikbaar.</p>
+    {% else %}
+        {# Punten #}
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Punten</th>
+                    {% for player in players %}
+                        <td>{{ player.getFullName }}</td>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in players %}
+                    <tr>
+                        <td>{{ player.getFullName }}</td>
+
+                        {% for otherPlayer in players %}
+                            {% if player == otherPlayer %}
+                                <td class="disabled"></td>
+                            {% else %}
+                                <td>{{ player.totalPointsDoubleWithOtherPlayer(otherPlayer) }}</td>
+                            {% endif %}
+
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Matchen</h3>
+        <hr/>
+
+        {# Matchen #}
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Matchen</th>
+                    {% for player in players %}
+                        <td>{{ player.getFullName }}</td>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in players %}
+                    <tr>
+                        <td>{{ player.getFullName }}</td>
+
+                        {% for otherPlayer in players %}
+                            {% if player == otherPlayer %}
+                                <td class="disabled"></td>
+                            {% else %}
+                                <td>{{ player.totalMatchesDoubleWithOtherPlayer(otherPlayer) }}</td>
+                            {% endif %}
+
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {# Gewonnen matchen #}
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Gewonnen matchen</th>
+                    {% for player in players %}
+                        <td>{{ player.getFullName }}</td>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in players %}
+                    <tr>
+                        <td>{{ player.getFullName }}</td>
+
+                        {% for otherPlayer in players %}
+                            {% if player == otherPlayer %}
+                                <td class="disabled"></td>
+                            {% else %}
+                                <td>{{ player.wonWithOtherPlayer(otherPlayer) }}</td>
+                            {% endif %}
+
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {# Punten per match #}
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Punten/match</th>
+                    {% for player in players %}
+                        <td>{{ player.getFullName }}</td>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in players %}
+                    <tr>
+                        <td>{{ player.getFullName }}</td>
+
+                        {% for otherPlayer in players %}
+                            {% if player == otherPlayer %}
+                                <td class="disabled"></td>
+                            {% else %}
+                                <td>{{ player.pointsPerMatchDoubleWithOtherPlayer(otherPlayer) }}</td>
+                            {% endif %}
+
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {# Win percentage match #}
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Winstpercentage (m)</th>
+                    {% for player in players %}
+                        <td>{{ player.getFullName }}</td>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in players %}
+                    <tr>
+                        <td>{{ player.getFullName }}</td>
+
+                        {% for otherPlayer in players %}
+                            {% if player == otherPlayer %}
+                                <td class="disabled"></td>
+                            {% else %}
+                                <td>{{ player.winPercentageWithOtherPlayer(otherPlayer) }}%</td>
+                            {% endif %}
+
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Sets</h3>
+        <hr/>
+
+        {# Sets #}
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Sets</th>
+                    {% for player in players %}
+                        <td>{{ player.getFullName }}</td>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in players %}
+                    <tr>
+                        <td>{{ player.getFullName }}</td>
+
+                        {% for otherPlayer in players %}
+                            {% if player == otherPlayer %}
+                                <td class="disabled"></td>
+                            {% else %}
+                                <td>{{ player.setsWithOtherPlayer(otherPlayer) }}</td>
+                            {% endif %}
+
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {# Won sets #}
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Gewonnen sets</th>
+                    {% for player in players %}
+                        <td>{{ player.getFullName }}</td>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in players %}
+                    <tr>
+                        <td>{{ player.getFullName }}</td>
+
+                        {% for otherPlayer in players %}
+                            {% if player == otherPlayer %}
+                                <td class="disabled"></td>
+                            {% else %}
+                                <td>{{ player.setsWonWithOtherPlayer(otherPlayer) }}</td>
+                            {% endif %}
+
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {# Points per set #}
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Punten/set</th>
+                    {% for player in players %}
+                        <td>{{ player.getFullName }}</td>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in players %}
+                    <tr>
+                        <td>{{ player.getFullName }}</td>
+
+                        {% for otherPlayer in players %}
+                            {% if player == otherPlayer %}
+                                <td class="disabled"></td>
+                            {% else %}
+                                <td>{{ player.pointsPerSetWithOtherPlayer(otherPlayer) }}</td>
+                            {% endif %}
+
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {# Win percentage sets #}
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Winstpercentage (s)</th>
+                    {% for player in players %}
+                        <td>{{ player.getFullName }}</td>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in players %}
+                    <tr>
+                        <td>{{ player.getFullName }}</td>
+
+                        {% for otherPlayer in players %}
+                            {% if player == otherPlayer %}
+                                <td class="disabled"></td>
+                            {% else %}
+                                <td>{{ player.setsWinPercentageWithOtherPlayer(otherPlayer) }}%</td>
+                            {% endif %}
+
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}

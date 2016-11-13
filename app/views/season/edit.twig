@@ -1,0 +1,38 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}Seizoen wijzigen{% endblock %}
+{% block pageTitle %}Seizoen wijzigen{% endblock %}
+
+{% block content %}
+    {# Back button #}
+    <p>
+        <a href="{{ urlFor('game.all', {seasonId: seasonId}) }}" class="btn btn-primary">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+    </p>
+
+    <form action="{{ urlFor('season.edit.post', {seasonId: seasonId}) }}" method="post" autocomplete="off">
+        <div class="form-group">
+            <label for="name">Naam</label>
+            <input type="text" name="name" id="name" class="form-control" value="{{ request.post('name') ? request.post('name') : season.name }}"/>
+            {% include 'errors/field.twig' with {'field': 'name'} %}
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Wijzigen" class="btn btn-primary form-control"/>
+        </div>
+
+        <input name="{{ csrf_key }}" value="{{ csrf_token }}" type="hidden"/>
+    </form>
+
+    {# Delete Form #}
+
+    <form action="{{ urlFor('season.delete', {seasonId: seasonId}) }}" method="post" autocomplete="off">
+        <div class="form-group">
+            <input type="submit" value="Verwijderen" class="btn btn-danger form-control"/>
+        </div>
+
+        <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>
+        <input name="_METHOD" value="DELETE" type="hidden"/>
+    </form>
+{% endblock %}
+

@@ -1,0 +1,70 @@
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+
+            {# Burger icon #}
+            {% if auth %}
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            {% endif %}
+
+            <a href="{{ urlFor('home') }}" class="navbar-brand">Competitie Manager</a>
+        </div>
+
+        {# Navigation #}
+        {% if auth %}
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+
+                {# Left navigation #}
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Seizoenen <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                {% if seasons|length > 0 %}
+                                    {% for season in seasons %}
+                                        <li><a href="{{ urlFor('game.all', {'seasonId': season.id}) }}">{{ season.name }}</a></li>
+                                    {% endfor %}
+                                {% else %}
+                                    <li>Geen seizoenen</li>
+                                {% endif %}
+
+                                {% if auth.isAdmin %}
+                                    <li role="seperator" class="divider"></li>
+                                    <li><a href="{{ urlFor('season.create') }}">Nieuw seizoen</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        <li><a href="{{ urlFor('player.all') }}">Spelers</a></li>
+                        <li><a href="{{ urlFor('player.stats', {seasonId: 'all'}) }}">Statistieken</a></li>
+                    </ul>
+
+                {# Right navigation #}
+                <ul class="nav navbar-nav navbar-right">
+                    {% if auth %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="{{ auth.getAvatarUrl({size: 16}) }}" alt="Avatar" class="padding-right-10"/>
+                                {{ auth.getFullNameOrUsername }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ urlFor('account.profile') }}">Gegevens wijzigen</a></li>
+                                <li><a href="{{ urlFor('auth.password.change') }}">Wachtwoord wijzigen</a></li>
+
+                                {% if auth.isAdmin %}
+                                    <li role="seperator" class="divider"></li>
+                                    <li><a href="{{ urlFor('user.all') }}">Gebruikers</a></li>
+                                    <li><a href="{{ urlFor('user.create') }}">Gebruiker aanmaken</a></li>
+                                {% endif %}
+
+                            </ul>
+                        </li>
+                        <li><a href="{{ urlFor('logout') }}">Uitloggen</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+</nav>

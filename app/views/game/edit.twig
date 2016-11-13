@@ -1,0 +1,30 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}Wedstrijd wijzigen{% endblock %}
+{% block pageTitle %}Wedstrijden wijzigen{% endblock %}
+
+{% block content %}
+    <p>
+        <a href="{{ urlFor('game.show', {seasonId: seasonId, gameId: gameId}) }}" class="btn btn-primary">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+    </p>
+
+    {# Edit Form #}
+
+    <form action="{{ urlFor('game.edit.post', {seasonId: seasonId, gameId: gameId}) }}" method="post" autocomplete="off">
+        {% include 'game/partials/form.twig' with {'submitButtonText': 'Wijzigen'} %}
+    </form>
+
+    {# Delete Form #}
+
+    <form action="{{ urlFor('game.delete', {seasonId: seasonId, gameId: gameId}) }}" method="post" autocomplete="off">
+        <div class="form-group">
+            <input type="submit" value="Verwijderen" class="btn btn-danger form-control"/>
+        </div>
+
+        <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>
+        <input name="_METHOD" value="DELETE" type="hidden"/>
+    </form>
+{% endblock %}
+

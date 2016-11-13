@@ -1,0 +1,7 @@
+{% if request.post(field) and request.post(field) == 'on'  %}
+    checked
+{% else %}
+    {% if game and game[field] %}
+        checked
+    {% endif %}
+{% endif %}

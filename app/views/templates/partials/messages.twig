@@ -1,0 +1,20 @@
+{% if flash.global %}
+    <div class="alert alert-success fade in">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        {{ flash.global }}
+    </div>
+{% endif %}
+
+{% if flash.error %}
+    <div class="alert alert-danger fade in">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        {{ flash.error }}
+    </div>
+{% endif %}
+
+{% if flash.info %}
+    <div class="alert alert-info fade in">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        {{ flash.info }}
+    </div>
+{% endif %}

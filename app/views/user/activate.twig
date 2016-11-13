@@ -1,0 +1,29 @@
+{% extends 'templates/default.twig'%}
+
+{% block title %}Account activeren{% endblock %}
+{% block pageTitle %}Account activeren{% endblock %}
+
+{% block content %}
+    <form action="{{ urlFor('user.activate.post') }}?email={{ email }}&identifier={{ identifier|url_encode }}" method="post" autocomplete="off">
+        <div class="form-group">
+            <label>Gebruikersnaam</label>
+            <p class="form-control-static">{{ username }}</p>
+        </div>
+        <div class="form-group">
+            <label for="password">Wachtwoord</label>
+            <input type="password" name="password" id="password" class="form-control"/>
+            {% include 'errors/field.twig' with {'field': 'password'} %}
+        </div>
+        <div class="form-group">
+            <label for="password_confirm">Wachtwoord bevestigen</label>
+            <input type="password" name="password_confirm" id="password_confirm" class="form-control"/>
+            {% include 'errors/field.twig' with {'field': 'password_confirm'} %}
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Activeer" class="btn btn-primary form-control"/>
+        </div>
+
+        <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>
+    </form>
+{% endblock %}
+

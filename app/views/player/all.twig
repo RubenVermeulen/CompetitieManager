@@ -1,0 +1,45 @@
+{% extends 'templates/default.twig'%}
+
+{% block title %}Spelers{% endblock %}
+{% block pageTitle %}Spelers{% endblock %}
+
+{% block content %}
+    <p>
+        {% if auth.isAdmin %}
+                <a href="{{ urlFor('player.create') }}" class="btn btn-primary">Nieuw</a>
+        {% endif %}
+    </p>
+
+    {% if players is empty %}
+        <p>Er zijn nog geen spelers.</p>
+    {% else %}
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Naam</th>
+                    <th>E-mail</th>
+                    <th>Telefoon</th>
+                    <th>Lidnummer</th>
+                    <th>Heren enkel</th>
+                    <th>Heren dubbel</th>
+                    <th>Mix dubbel</th>
+                </tr>
+                </thead>
+
+                {% for player in players %}
+                    <tr>
+                        <td><a href="{{ urlFor('player.show', {id: player.id}) }}">{{ player.getFullName }}</a></td>
+                        <td><a href="mailto:{{ player.email }}">{{ player.email }}</a></td>
+                        <td>{{ player.telephone }}</td>
+                        <td>{{ player.membership_id }}</td>
+                        <td>{{ player.getSm }}</td>
+                        <td>{{ player.getDm }}</td>
+                        <td>{{ player.getDx }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}
+

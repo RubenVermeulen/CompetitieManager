@@ -1,0 +1,99 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}Resultaat wijzigen{% endblock %}
+{% block pageTitle %}Resultaat wijzigen{% endblock %}
+
+{% block content %}
+    {# Back button #}
+    <p>
+        <a href="{{ urlFor('game.show', {seasonId: seasonId, gameId: gameId}) }}" class="btn btn-primary">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+    </p>
+
+    <form action="{{ urlFor('result.edit.post', {seasonId: seasonId, gameId: gameId}) }}" method="post" autocomplete="off">
+        {# Dubbel 1 #}
+        <p><strong>Dubbel 1</strong></p>
+        <div class="row">
+            {% include 'game/result/partials/set.twig' with {'match': 'd1', 'set': 1, 'matchIndex': 0} %}
+            {% include 'game/result/partials/set.twig' with {'match': 'd1', 'set': 2, 'matchIndex': 0} %}
+            {% include 'game/result/partials/set.twig' with {'match': 'd1', 'set': 3, 'matchIndex': 0} %}
+        </div>
+
+        {# Dubbel 2 #}
+        <p><strong>Dubbel 2</strong></p>
+        <div class="row">
+            {% include 'game/result/partials/set.twig' with {'match': 'd2', 'set': 1, 'matchIndex': 1} %}
+            {% include 'game/result/partials/set.twig' with {'match': 'd2', 'set': 2, 'matchIndex': 1} %}
+            {% include 'game/result/partials/set.twig' with {'match': 'd2', 'set': 3, 'matchIndex': 1} %}
+        </div>
+
+        {# Dubbel 3 #}
+        <p><strong>Dubbel 3</strong></p>
+        <div class="row">
+            {% include 'game/result/partials/set.twig' with {'match': 'd3', 'set': 1, 'matchIndex': 2} %}
+            {% include 'game/result/partials/set.twig' with {'match': 'd3', 'set': 2, 'matchIndex': 2} %}
+            {% include 'game/result/partials/set.twig' with {'match': 'd3', 'set': 3, 'matchIndex': 2} %}
+        </div>
+
+        {# Dubbel 4 #}
+        <p><strong>Dubbel 4</strong></p>
+        <div class="row">
+            {% include 'game/result/partials/set.twig' with {'match': 'd4', 'set': 1, 'matchIndex': 3} %}
+            {% include 'game/result/partials/set.twig' with {'match': 'd4', 'set': 2, 'matchIndex': 3} %}
+            {% include 'game/result/partials/set.twig' with {'match': 'd4', 'set': 3, 'matchIndex': 3} %}
+        </div>
+
+        <hr/>
+
+        {# Enkel 1 #}
+        <p><strong>Enkel 1</strong></p>
+        <div class="row">
+            {% include 'game/result/partials/set.twig' with {'match': 's1', 'set': 1, 'matchIndex': 4} %}
+            {% include 'game/result/partials/set.twig' with {'match': 's1', 'set': 2, 'matchIndex': 4} %}
+            {% include 'game/result/partials/set.twig' with {'match': 's1', 'set': 3, 'matchIndex': 4} %}
+        </div>
+
+        {# Enkel 2 #}
+        <p><strong>Enkel 2</strong></p>
+        <div class="row">
+            {% include 'game/result/partials/set.twig' with {'match': 's2', 'set': 1, 'matchIndex': 5} %}
+            {% include 'game/result/partials/set.twig' with {'match': 's2', 'set': 2, 'matchIndex': 5} %}
+            {% include 'game/result/partials/set.twig' with {'match': 's2', 'set': 3, 'matchIndex': 5} %}
+        </div>
+
+        {# Enkel 3 #}
+        <p><strong>Enkel 3</strong></p>
+        <div class="row">
+            {% include 'game/result/partials/set.twig' with {'match': 's3', 'set': 1, 'matchIndex': 6} %}
+            {% include 'game/result/partials/set.twig' with {'match': 's3', 'set': 2, 'matchIndex': 6} %}
+            {% include 'game/result/partials/set.twig' with {'match': 's3', 'set': 3, 'matchIndex': 6} %}
+        </div>
+
+        {# Enkel 4 #}
+        <p><strong>Enkel 4</strong></p>
+        <div class="row">
+            {% include 'game/result/partials/set.twig' with {'match': 's4', 'set': 1, 'matchIndex': 7} %}
+            {% include 'game/result/partials/set.twig' with {'match': 's4', 'set': 2, 'matchIndex': 7} %}
+            {% include 'game/result/partials/set.twig' with {'match': 's4', 'set': 3, 'matchIndex': 7} %}
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Wijzigen" class="btn btn-primary form-control"/>
+        </div>
+
+        <input name="{{ csrf_key }}" value="{{ csrf_token }}" type="hidden"/>
+    </form>
+
+    {# Delete Form #}
+
+    <form action="{{ urlFor('result.delete', {seasonId: seasonId, gameId: gameId}) }}" method="post" autocomplete="off">
+        <div class="form-group">
+            <input type="submit" value="Verwijderen" class="btn btn-danger form-control"/>
+        </div>
+
+        <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>
+        <input name="_METHOD" value="DELETE" type="hidden"/>
+    </form>
+{% endblock %}
+

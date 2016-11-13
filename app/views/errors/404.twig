@@ -1,0 +1,10 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}404{% endblock %}
+{% block pageTitle %}404 - Pagina niet gevonden{% endblock %}
+
+{% block content %}
+    <p>De pagina die u zoekt kon niet worden gevonden. Controleer de URL in de adresbalk voor spellingsfouten. Als het nog steeds niet lukt dan kan u naar de startpagina via onderstaande URL.</p>
+    <a href="{{ urlFor('home') }}">Bezoek de startpagina</a>
+{% endblock %}
+

@@ -1,0 +1,30 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}Speler wijzigen{% endblock %}
+{% block pageTitle %}Speler wijzigen{% endblock %}
+
+{% block content %}
+    <p>
+        <a href="{{ urlFor('player.show', {id: id}) }}" class="btn btn-primary">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+    </p>
+
+    {# Edit Form #}
+
+    <form action="{{ urlFor('player.edit.post', {id: id}) }}" method="post" autocomplete="off">
+        {% include 'player/partials/form.twig' with {'submitButtonText': 'Wijzigen'} %}
+    </form>
+
+    {# Delete Form #}
+
+    <form action="{{ urlFor('player.edit.delete', {id: id}) }}" method="post" autocomplete="off">
+        <div class="form-group">
+            <input type="submit" value="Verwijderen" class="btn btn-danger form-control"/>
+        </div>
+
+        <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>
+        <input name="_METHOD" value="DELETE" type="hidden"/>
+    </form>
+{% endblock %}
+

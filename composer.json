@@ -1,0 +1,16 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Rubol\\": "app/Rubol"
+        }
+    },
+    "require": {
+        "slim/slim": "~2.0",
+        "slim/views": "0.1.*",
+        "twig/twig": "~1.0",
+        "mailgun/mailgun-php": "~1.8",
+        "hassankhan/config": "0.8.*",
+        "illuminate/database": "~5.0",
+        "alexgarrett/violin": "2.*",
+        "ircmaxell/random-lib": "~1.1"
+    }}
