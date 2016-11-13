@@ -140,7 +140,7 @@
                     {% set double = true %}
 
                     {% for match in game.matches %}
-                        <tr {{ match.won ? 'class="success"' : 'class="danger"' }}>
+                        <tr {{ match.won() ? 'class="success"' : 'class="danger"' }}>
                             <th>{{ match.type == 2 ? 'Dubbel' : 'Enkel' }} {{ count }}</th>
                             {% for set in match.sets %}
                                 <td>
