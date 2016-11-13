@@ -21,8 +21,8 @@
             <label for="permission">Rechten</label>
             <select name="permission" id="permission" class="form-control">
                 <option value="0">Maak een keuze</option>
-                <option value="1" {{ (request.post('permission') and request.post('permission') == 1) or ( user and not user.isAdmin) ? 'selected' : '' }}>Normaal</option>
-                <option value="2" {{ (request.post('permission') and request.post('permission') == 2) or ( user and user.isAdmin) ? 'selected' : '' }}>Admin</option>
+                <option value="1" {{ (request.post('permission') and request.post('permission') == 1) or ( user and not user.isAdmin()) ? 'selected' : '' }}>Normaal</option>
+                <option value="2" {{ (request.post('permission') and request.post('permission') == 2) or ( user and user.isAdmin()) ? 'selected' : '' }}>Admin</option>
             </select>
             {% include 'errors/field.twig' with {field: 'permission'} %}
         </div>
