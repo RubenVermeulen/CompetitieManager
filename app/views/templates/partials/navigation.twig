@@ -32,7 +32,7 @@
                                     <li>Geen seizoenen</li>
                                 {% endif %}
 
-                                {% if auth.isAdmin %}
+                                {% if auth.isAdmin() %}
                                     <li role="seperator" class="divider"></li>
                                     <li><a href="{{ urlFor('season.create') }}">Nieuw seizoen</a></li>
                                 {% endif %}
@@ -48,12 +48,12 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="{{ auth.getAvatarUrl({size: 16}) }}" alt="Avatar" class="padding-right-10"/>
-                                {{ auth.getFullNameOrUsername }} <span class="caret"></span></a>
+                                {{ auth.getFullNameOrUsername() }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ urlFor('account.profile') }}">Gegevens wijzigen</a></li>
                                 <li><a href="{{ urlFor('auth.password.change') }}">Wachtwoord wijzigen</a></li>
 
-                                {% if auth.isAdmin %}
+                                {% if auth.isAdmin() %}
                                     <li role="seperator" class="divider"></li>
                                     <li><a href="{{ urlFor('user.all') }}">Gebruikers</a></li>
                                     <li><a href="{{ urlFor('user.create') }}">Gebruiker aanmaken</a></li>
