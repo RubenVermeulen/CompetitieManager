@@ -31,15 +31,15 @@
             </tr>
             <tr>
                 <th>Heren enkel</th>
-                <td>{{ player.getSm }}</td>
+                <td>{{ player.getSm() }}</td>
             </tr>
             <tr>
                 <th>Heren dubbel</th>
-                <td>{{ player.getDm }}</td>
+                <td>{{ player.getDm() }}</td>
             </tr>
             <tr>
                 <th>Mix dubbel</th>
-                <td>{{ player.getDx }}</td>
+                <td>{{ player.getDx() }}</td>
             </tr>
         </table>
     </div>
@@ -54,25 +54,25 @@
         <table class="table table-bordered">
             <tr>
                 <th>Punten</th>
-                <td>{{ player.totalPointsSingle }}</td>
+                <td>{{ player.totalPointsSingle() }}</td>
             </tr>
 
             {# Matchen#}
             <tr>
                 <th>Matchen</th>
-                <td>{{ player.matchesPlayedSingle }}</td>
+                <td>{{ player.matchesPlayedSingle() }}</td>
             </tr>
             <tr>
                 <th>Gewonnen matchen</th>
-                <td>{{ player.matchesWonSingle }}</td>
+                <td>{{ player.matchesWonSingle() }}</td>
             </tr>
             <tr>
                 <th>Punten/match</th>
-                <td>{{ player.pointsPerMatchSingle }}</td>
+                <td>{{ player.pointsPerMatchSingle() }}</td>
             </tr>
             <tr>
                 <th>Winstpercentage (m)</th>
-                <td>{{ player.winPercentageSingle }}%</td>
+                <td>{{ player.winPercentageSingle() }}%</td>
             </tr>
             <tr class="active">
                 <td></td>
@@ -82,19 +82,19 @@
             {# Sets #}
             <tr>
                 <th>Sets</th>
-                <td>{{ player.totalSetsSingle }}</td>
+                <td>{{ player.totalSetsSingle() }}</td>
             </tr>
             <tr>
                 <th>Gewonnen sets</th>
-                <td>{{ player.setsWonSingle }}</td>
+                <td>{{ player.setsWonSingle() }}</td>
             </tr>
             <tr>
                 <th>Punten/set</th>
-                <td>{{ player.pointsPerSetSingle }}</td>
+                <td>{{ player.pointsPerSetSingle() }}</td>
             </tr>
             <tr>
                 <th>Winstpercentage (s)</th>
-                <td>{{ player.setsWinPercentageSingle }}%</td>
+                <td>{{ player.setsWinPercentageSingle() }}%</td>
             </tr>
 
         </table>

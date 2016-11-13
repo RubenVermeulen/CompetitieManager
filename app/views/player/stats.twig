@@ -43,18 +43,18 @@
                 <tbody>
                 {% for player in players %}
                     <tr>
-                        <td>{{ player.getFullName }}</td>
-                        <td>{{ player.totalPointsSingle }}</td>
+                        <td>{{ player.getFullName() }}</td>
+                        <td>{{ player.totalPointsSingle() }}</td>
 
-                        <td>{{ player.matchesPlayedSingle }}</td>
-                        <td>{{ player.matchesWonSingle }}</td>
-                        <td>{{ player.pointsPerMatchSingle }}</td>
-                        <td>{{ player.winPercentageSingle }}%</td>
+                        <td>{{ player.matchesPlayedSingle() }}</td>
+                        <td>{{ player.matchesWonSingle() }}</td>
+                        <td>{{ player.pointsPerMatchSingle() }}</td>
+                        <td>{{ player.winPercentageSingle() }}%</td>
 
-                        <td>{{ player.totalSetsSingle }}</td>
-                        <td>{{ player.setsWonSingle }}</td>
-                        <td>{{ player.pointsPerSetSingle }}</td>
-                        <td>{{ player.setsWinPercentageSingle }}%</td>
+                        <td>{{ player.totalSetsSingle() }}</td>
+                        <td>{{ player.setsWonSingle() }}</td>
+                        <td>{{ player.pointsPerSetSingle() }}</td>
+                        <td>{{ player.setsWinPercentageSingle() }}%</td>
                     </tr>
                 {% endfor %}
                 </tbody>
