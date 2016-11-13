@@ -21,15 +21,15 @@
         </tr>
         <tr>
             <th>Adres</th>
-            <td><span id="google-map-address">{{ game.getAddress }}</span></td>
+            <td><span id="google-map-address">{{ game.getAddress() }}</span></td>
         </tr>
         <tr>
             <th>Datum</th>
-            <td>{{ game.getDatePlayedAt }}</td>
+            <td>{{ game.getDatePlayedAt() }}</td>
         </tr>
         <tr>
             <th>Tijd</th>
-            <td>{{ game.getTimePlayedAt }}</td>
+            <td>{{ game.getTimePlayedAt() }}</td>
         </tr>
     </table>
 
@@ -41,7 +41,7 @@
 
     {% if game.matches is empty %}
         {# Create lineup #}
-        {% if auth.isAdmin %}
+        {% if auth.isAdmin() %}
             <p><a href="{{ urlFor('lineup.create', {seasonId: seasonId, gameId: game.id}) }}" class="btn btn-primary">Lineup opstellen</a></p>
         {% endif %}
 
@@ -70,19 +70,19 @@
                         {% if match.type ==  2 %}
                             <tr>
                                 <th rowspan="2">Dubbel {{ count }}</th>
-                                <td class="lightUp">{{ match.players[0].getFullname }}</td>
+                                <td class="lightUp">{{ match.players[0].getFullname() }}</td>
                                 <td>{{ match.players[0].membership_id }}</td>
                                 <td>{{ match.players[0].dm }}</td>
                             </tr>
                             <tr>
-                                <td class="lightUp">{{ match.players[1].getFullname }}</td>
+                                <td class="lightUp">{{ match.players[1].getFullname() }}</td>
                                 <td>{{ match.players[1].membership_id }}</td>
                                 <td>{{ match.players[1].dm }}</td>
                             </tr>
                         {% else %}
                             <tr>
                                 <th>Enkel {{ count }}</th>
-                                <td class="lightUp">{{ match.players[0].getFullname }}</td>
+                                <td class="lightUp">{{ match.players[0].getFullname() }}</td>
                                 <td>{{ match.players[0].membership_id }}</td>
                                 <td>{{ match.players[0].sm }}</td>
                             </tr>
