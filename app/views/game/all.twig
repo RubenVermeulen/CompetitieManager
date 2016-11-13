@@ -4,7 +4,7 @@
 {% block pageTitle %}Wedstrijden ({{ seasonName }}){% endblock %}
 
 {% block content %}
-    {% if auth.isAdmin %}
+    {% if auth.isAdmin() %}
         <p>
             <a href="{{ urlFor('game.create', {seasonId: seasonId}) }}" class="btn btn-primary">Nieuw</a>
             <a href="{{ urlFor('season.edit', {seasonId: seasonId}) }}" class="btn btn-primary">Seizoen wijzigen</a>
@@ -29,10 +29,10 @@
                 {% for game in games %}
                     <tr>
                         <td><a href="{{ urlFor('game.show', {seasonId: seasonId, gameId: game.id}) }}">{{ game.competitor }}</a></td>
-                        <td>{{ game.getAddress }}</td>
-                        <td>{{ game.getDatePlayedAt }}</td>
-                        <td>{{ game.getDayPlayedAt }}</td>
-                        <td>{{ game.getTimePlayedAt }}</td>
+                        <td>{{ game.getAddress() }}</td>
+                        <td>{{ game.getDatePlayedAt() }}</td>
+                        <td>{{ game.getDayPlayedAt() }}</td>
+                        <td>{{ game.getTimePlayedAt() }}</td>
                     </tr>
                 {% endfor %}
             </table>

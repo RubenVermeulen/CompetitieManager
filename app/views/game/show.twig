@@ -8,7 +8,7 @@
         <a href="{{ urlFor('game.all', {seasonId: seasonId}) }}" class="btn btn-primary">
             <span class="glyphicon glyphicon-arrow-left"></span>
         </a>
-        {% if auth.isAdmin %}
+        {% if auth.isAdmin() %}
             <a href="{{ urlFor('game.edit', {seasonId: seasonId, gameId: game.id}) }}" class="btn btn-primary">Details wijzigen</a>
         {% endif %}
         <button class="btn btn-primary" onclick="window.print()">Printen</button>
@@ -48,7 +48,7 @@
         <p>Er is nog geen lineup beschikbaar.</p>
     {% else %}
         {# Edit lineup #}
-        {% if auth.isAdmin %}
+        {% if auth.isAdmin() %}
             <p><a href="{{ urlFor('lineup.edit', {seasonId: seasonId, gameId: game.id}) }}" class="btn btn-primary">Lineup Wijzigen</a></p>
         {% endif %}
 
@@ -113,7 +113,7 @@
             {% if game.matches is not empty %}
 
                 {# Create results #}
-                {% if auth.isAdmin %}
+                {% if auth.isAdmin() %}
                     <p><a href="{{ urlFor('result.create', {seasonId: seasonId, gameId: game.id}) }}" class="btn btn-primary">Resultaten invullen</a></p>
                 {% endif %}
             {% endif %}
@@ -121,7 +121,7 @@
             <p>Er zijn nog geen resultaten beschikbaar.</p>
         {% else %}
             {# Edit results #}
-            {% if auth.isAdmin %}
+            {% if auth.isAdmin() %}
                 <p><a href="{{ urlFor('result.edit', {seasonId: seasonId, gameId: game.id}) }}" class="btn btn-primary">Resultaten wijzigen</a></p>
             {% endif %}
 

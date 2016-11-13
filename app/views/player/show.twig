@@ -10,7 +10,7 @@
             <span class="glyphicon glyphicon-arrow-left"></span>
         </a>
 
-        {% if auth.isAdmin %}
+        {% if auth.isAdmin() %}
             <a href="{{ urlFor('player.edit', {id: player.id}) }}" class="btn btn-primary">Wijzigen</a>
         {% endif %}
     </p>

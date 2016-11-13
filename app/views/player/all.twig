@@ -5,7 +5,7 @@
 
 {% block content %}
     <p>
-        {% if auth.isAdmin %}
+        {% if auth.isAdmin() %}
                 <a href="{{ urlFor('player.create') }}" class="btn btn-primary">Nieuw</a>
         {% endif %}
     </p>
@@ -33,9 +33,9 @@
                         <td><a href="mailto:{{ player.email }}">{{ player.email }}</a></td>
                         <td>{{ player.telephone }}</td>
                         <td>{{ player.membership_id }}</td>
-                        <td>{{ player.getSm }}</td>
-                        <td>{{ player.getDm }}</td>
-                        <td>{{ player.getDx }}</td>
+                        <td>{{ player.getSm() }}</td>
+                        <td>{{ player.getDm() }}</td>
+                        <td>{{ player.getDx() }}</td>
                     </tr>
                 {% endfor %}
             </table>
