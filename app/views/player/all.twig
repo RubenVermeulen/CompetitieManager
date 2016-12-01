@@ -29,7 +29,7 @@
 
                 {% for player in players %}
                     <tr>
-                        <td><a href="{{ urlFor('player.show', {id: player.id}) }}">{{ player.getFullName }}</a></td>
+                        <td><a href="{{ urlFor('player.show', {id: player.id}) }}">{{ player.getFullName() }}</a></td>
                         <td><a href="mailto:{{ player.email }}">{{ player.email }}</a></td>
                         <td>{{ player.telephone }}</td>
                         <td>{{ player.membership_id }}</td>
