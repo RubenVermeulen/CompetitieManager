@@ -124,7 +124,7 @@
             <tbody>
             {% for otherPlayer in players %}
                 <tr>
-                    <td>{{ otherPlayer.getFullName }}</td>
+                    <td>{{ otherPlayer.getFullName() }}</td>
                     <td>{{ player.totalPointsDoubleWithOtherPlayer(otherPlayer) }}</td>
 
                     <td>{{ player.totalMatchesDoubleWithOtherPlayer(otherPlayer) }}</td>
