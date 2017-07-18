@@ -29,6 +29,7 @@ class BeforeMiddleware extends Middleware
             'auth' => $this->app->auth,
             'baseUrl' => $this->app->config->get('app.url'),
             'subUrl' => $this->app->config->get('app.subUrl'),
+            'apiUrl' => $this->app->config->get('app.apiUrl'),
         ]);
     }
 

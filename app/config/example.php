@@ -34,5 +34,9 @@ return [
     ],
     'csrf' => [
         'key' => 'csrf_token'
+    ],
+    'notifications' => [
+        'title' => '',
+        'topic' => ''
     ]
 ];
