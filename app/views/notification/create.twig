@@ -23,7 +23,7 @@
             var bodyValue = bodyElement.val().trim();
 
             if (bodyValue.length > 0) {
-                axios.post('{{ apiUrl }}notifcations', {
+                axios.post('{{ apiUrl }}notifications', {
                     title: '{{ rdTitle }}',
                     topic: '{{ rdTopic }}',
                     body : bodyValue
