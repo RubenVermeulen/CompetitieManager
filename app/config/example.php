@@ -7,7 +7,8 @@ return [
         'hash' => [
             'algo' => PASSWORD_BCRYPT,
             'cost' => 10
-        ]
+        ],
+        'apiUrl' => 'http://api.example.com/'
     ],
     'db' => [
         'driver' => 'mysql',

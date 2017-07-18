@@ -46,6 +46,8 @@ $app->get('/cron/:key/notification', function($key) use($app) {
      * Only sent an email when there are upcoming games.
      */
     if (count($games) !== 0) {
+        $game = $games[0];
+
         /*
          * Send an email.
          */
@@ -53,6 +55,19 @@ $app->get('/cron/:key/notification', function($key) use($app) {
             'to' => $to,
             'subject' => 'Herinnering komende wedstrijden.',
         ]);
+
+        /*
+         * Send a notification.
+         */
+        $client = new \GuzzleHttp\Client();
+        $url = $app->config->get('app.apiUrl') . 'notifications';
+        $location = $game->home ? 'thuis' : 'op verplaatsing';
+        $request = $client->createRequest('¨POST', $url, [
+            'title' => 'Flee Shuttle 2H',
+            'topic' => 'flee_shuttle_2h',
+            'body' => "Volgende week {$game->getDayPlayedAt()} ({$game->getStandardDatePlayedAt()}) om {$game->getTimePlayedAt()} spelen we {$location} tegen {$game->competitor}"
+        ]);
+        $client->send($request);
     }
 
 });
