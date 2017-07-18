@@ -6,8 +6,8 @@
 {% block content %}
     <form id="notification-form" action="" method="post" autocomplete="off">
         <div class="form-group">
-            <label for="body"></label>
-            <textarea name="body" id="body" placeholder="Hou het bericht zo kort mogelijk!"></textarea>
+            <label for="body">Inhoud</label>
+            <textarea name="body" id="body" class="form-control" placeholder="Hou het bericht zo kort mogelijk!"></textarea>
         </div>
         <div class="form-group">
             <input type="submit" value="Verzenden" class="btn btn-primary form-control"/>
@@ -28,16 +28,16 @@
                     topic: '{{ rdTopic }}',
                     body : bodyValue
                 }).then(function(response) {
-                    prompt('Notificatie verzonden!');
+                    alert('Notificatie verzonden!');
                     bodyElement.val('');
                 }).catch(function(error) {
-                    prompt('Notifcatie kon niet worden verzonden.');
+                    alert('Notifcatie kon niet worden verzonden.');
                     console.log('Error:', error);
                 });
                 event.preventDefault();
             }
             else {
-                prompt('Alle velden zijn vereist!')
+                alert('Alle velden zijn vereist!')
             }
         });
     </script>
