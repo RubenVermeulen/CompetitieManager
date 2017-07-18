@@ -34,11 +34,12 @@
                     alert('Notifcatie kon niet worden verzonden.');
                     console.log('Error:', error);
                 });
-                event.preventDefault();
             }
             else {
                 alert('Alle velden zijn vereist!')
             }
+
+            event.preventDefault();
         });
     </script>
 {% endblock %}
