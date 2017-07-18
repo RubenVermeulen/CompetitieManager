@@ -9,6 +9,7 @@
                 <th style="padding: 8px">Tegenstander</th>
                 <th style="padding: 8px">Adres</th>
                 <th style="padding: 8px">Datum</th>
+                <th style="padding: 8px">Dag</th>
                 <th style="padding: 8px">Tijd</th>
                 <th style="padding: 8px"></th>
             </tr>
@@ -19,6 +20,7 @@
                     <td style="padding: 8px">{{ game.competitor }}</td>
                     <td style="padding: 8px">{{ game.getAddress() }}</td>
                     <td style="padding: 8px">{{ game.getStandardDatePlayedAt() }}</td>
+                    <td style="padding: 8px">{{ game.getDayPlayedAt() }}</td>
                     <td style="padding: 8px">{{ game.getTimePlayedAt() }}</td>
                     <td style="padding: 8px"><a href="{{ baseUrl }}{{ urlFor('game.show', {seasonId: game.season.id, gameId: game.id}) }}">Details</a></td>
                 </tr>
