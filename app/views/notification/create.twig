@@ -24,8 +24,8 @@
 
             if (bodyValue.length > 0) {
                 axios.post('{{ apiUrl }}notifcations', {
-                    title: {{ rdTitle }},
-                    topic: {{ rdTopic }},
+                    title: '{{ rdTitle }}',
+                    topic: '{{ rdTopic }}',
                     body : bodyValue
                 }).then(function(response) {
                     prompt('Notificatie verzonden!');
