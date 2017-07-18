@@ -65,7 +65,7 @@ $app->get('/cron/:key/notification', function($key) use($app) {
         $payload = [
             'title' => 'Flee Shuttle 2H',
             'topic' => 'flee_shuttle_2h',
-            'body' => "Volgende week {$game->getDayPlayedAt()} ({$game->getStandardDatePlayedAt()}) om {$game->getTimePlayedAt()} spelen we {$location} tegen {$game->competitor}"
+            'body' => "Volgende week {$game->getDayPlayedAt()} ({$game->getStandardDatePlayedAt()}) om {$game->getTimePlayedAt()} spelen we {$location} tegen {$game->competitor}."
         ];
         $client->post($url, ['json' => $payload]);
     }
